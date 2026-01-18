@@ -44,4 +44,13 @@ The game allows the player to guess a **5-letter word** in **5 attempts**, provi
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/wordle-clone.git
+https://github.com/Choudhary-Sahil099/Wordie.git
+
+###2️⃣ Navigate to the project folder
+cd wordie
+
+###3️⃣ Install dependencies
+npm install
+
+###4️⃣ Run the development server
+npm run dev
