@@ -14,12 +14,13 @@ const App = () => {
   const [currentRow, setCurrentRow] = useState(0);
   const [currentCol, setCurrentCol] = useState(0);
   const [lockedRows, setLockedRows] = useState(Array(5).fill(false));
+  const [revealed, setRevealed] = useState(Array(5).fill(false));
 
   const [colors, setColors] = useState(
     Array.from({ length: 5 }, () => Array(5).fill("")),
   );
   const [gameOver, setGameOver] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(false);
 
   useEffect(() => {
     async function fetchWord() {
@@ -75,13 +76,14 @@ const App = () => {
       if (e.key === "Enter" && currentCol == 5) {
         const guess = grid[currentRow].join("");
         const wordArray = word.split("");
-
+        const newRevealed = [...revealed];
         const rowColor = Array(5).fill("bg-gray-400");
 
         for (let i = 0; i < 5; i++) {
           if (guess[i] === wordArray[i]) {
             rowColor[i] = "bg-green-500";
             wordArray[i] = null;
+            newRevealed[i] = true;
           }
         }
         for (let i = 0; i < 5; i++) {
@@ -92,7 +94,7 @@ const App = () => {
             wordArray[index] = null;
           }
         }
-
+        setRevealed(newRevealed);
         setColors((prev) =>
           prev.map((row, rIdx) => (rIdx === currentRow ? rowColor : row)),
         );
@@ -107,11 +109,14 @@ const App = () => {
           setMessage("You Win!!");
           setGameOver(true);
 
+
+
           setLockedRows((prev) => {
             const copy = [...prev];
             copy[currentRow] = true;
             return copy;
           });
+
           return;
         }
 
@@ -123,7 +128,8 @@ const App = () => {
 
         if(currentRow === 4){
           setMessage("You Loose 💔");
-          gameOver(true);
+          setRevealed(Array(5).fill(true));
+          setGameOver(true);
         }
         setCurrentRow((prev) => prev + 1);
         setCurrentCol(0);
@@ -133,12 +139,12 @@ const App = () => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentRow, currentCol]);
+  
 
   if (!word) {
     return <h2>Loading...</h2>;
   }
 
-  const letters = word.split("");
 
   return (
     <>
@@ -147,12 +153,12 @@ const App = () => {
         <h2 className="text-2xl text-center">Word Loaded</h2>
 
         <div className="flex gap-10 items-center justify-center">
-          {letters.map((l, i) => (
+          {word.split("").map((l, i) => (
             <span
-              className="h-13 w-13 border-1 flex justify-center items-center gap-10 rounded-xl text-xl font-medium {}"
+              className="h-13 w-13 border-1 flex justify-center items-center gap-10 rounded-xl text-xl font-medium hidden-Text "
               key={i}
             >
-              {l}
+              {revealed[i] ? l : "-"}
             </span>
           ))}
         </div>
