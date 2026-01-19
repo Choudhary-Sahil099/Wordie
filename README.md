@@ -1,16 +1,56 @@
-# React + Vite
+# 🟩 Wordle Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **Wordle-style game** built using **React, Vite, and Tailwind CSS**.  
+The game allows the player to guess a **5-letter word** in **5 attempts**, providing color-based feedback just like the original Wordle.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- 🎯 5×5 interactive grid (5 guesses × 5 letters)
+- ⌨️ Keyboard-based input (no multiple input fields)
+- 🟩🟨⬛ Real Wordle color logic:
+  - 🟩 Green: correct letter & correct position  
+  - 🟨 Yellow: correct letter but wrong position  
+  - ⬛ Gray: letter not in the word
+- 🔒 Submitted rows are locked and cannot be edited
+- 🏆 Game ends immediately when the correct word is guessed
+- ⚡ Fast development setup using Vite
+- 🎨 Styled with Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React** (Hooks: `useState`, `useEffect`)
+- **Vite**
+- **Tailwind CSS**
+- **JavaScript (ES6+)**
+
+---
+
+## 🧠 How It Works
+
+- A random 5-letter word is fetched at the start of the game
+- User types letters using the keyboard
+- Letters fill the active row from left to right
+- Pressing **Enter** submits a guess and locks the row
+- Colors are applied based on Wordle rules
+- The game stops when the word is guessed or attempts are exhausted
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+https://github.com/Choudhary-Sahil099/Wordie.git
+
+###2️⃣ Navigate to the project folder
+cd wordie
+
+###3️⃣ Install dependencies
+npm install
+
+###4️⃣ Run the development server
+npm run dev
