@@ -120,6 +120,11 @@ const App = () => {
           copy[currentRow] = true;
           return copy;
         });
+
+        if(currentRow === 4){
+          setMessage("You Loose 💔");
+          gameOver(true);
+        }
         setCurrentRow((prev) => prev + 1);
         setCurrentCol(0);
       }
@@ -144,7 +149,7 @@ const App = () => {
         <div className="flex gap-10 items-center justify-center">
           {letters.map((l, i) => (
             <span
-              className="h-13 w-13 border-1 flex justify-center items-center gap-10 rounded-xl text-xl font-medium"
+              className="h-13 w-13 border-1 flex justify-center items-center gap-10 rounded-xl text-xl font-medium {}"
               key={i}
             >
               {l}
